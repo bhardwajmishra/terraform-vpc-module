@@ -7,30 +7,30 @@ resource "aws_vpc" "main" {
 }
 
 #Subnet 
-resource "aws_subnet" "main" {
+resource "aws_subnet" "main_a" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = var.cidr
+  cidr_block = var.cidr_for_subnet_a
 
   tags = {
-    Name = "bhardwaj-test"
+    Name = "bhardwaj-test-a"
   }
 }
 
-resource "aws_subnet" "main1" {
+resource "aws_subnet" "main_b" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = var.cidr1
+  cidr_block = var.cidr_for_subnet_b
 
   tags = {
-    Name = "bhardwaj-test-1"
+    Name = "bhardwaj-test-b"
   }
 }
 
-resource "aws_subnet" "main2" {
+resource "aws_subnet" "main_c" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = var.cidr2
+  cidr_block = var.cidr_for_subnet_c
 
   tags = {
-    Name = "bhardwaj-test-2"
+    Name = "bhardwaj-test-c"
   }
 }
 
@@ -47,18 +47,18 @@ resource "aws_route_table" "main" {
     Name = "bhardwaj"
   }
 }
-resource "aws_route_table_association" "main" {
-  subnet_id      = aws_subnet.main.id
+resource "aws_route_table_association" "main_a" {
+  subnet_id      = aws_subnet.main_a.id
   route_table_id = aws_route_table.main.id
 }
 
-resource "aws_route_table_association" "main1" {
-  subnet_id      = aws_subnet.main1.id
+resource "aws_route_table_association" "main_b" {
+  subnet_id      = aws_subnet.main_b.id
   route_table_id = aws_route_table.main.id
 }
 
-resource "aws_route_table_association" "main2" {
-  subnet_id      = aws_subnet.main2.id
+resource "aws_route_table_association" "main_c" {
+  subnet_id      = aws_subnet.main_c.id
   route_table_id = aws_route_table.main.id
 }
 
